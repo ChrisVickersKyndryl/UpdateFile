@@ -14,7 +14,7 @@
       
     - name: Add line to file in Linux/Unix if it does not already exist
       copy:
-        dest: "c:/NEW.txt"
+        dest: "/tmp/NEW.txt"
         content: |
           line 01
           line 02
