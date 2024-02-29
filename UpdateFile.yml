@@ -5,7 +5,7 @@
   
   tasks:
     - name: Add line to file in windows if it does not already exist
-      copy:
+      win_copy:
         dest: "c:/NEW.txt"
         content: |
           line 01
