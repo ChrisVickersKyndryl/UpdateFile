@@ -4,14 +4,18 @@
   gather_facts: true
   
   tasks:
-    - name: Check if line exists in file
-      shell: grep -q "{{ line_to_add }}" "{{ file_path }}"
-      register: grep_result
-      changed_when: false
-
-    - name: Add line to file if it doesn't exist
-      lineinfile:
-        path: "{{ file_path }}"
-        line: "{{ line_to_add }}"
-        insertafter: EOF
-      when: grep_result.rc != 0
+    - name: Add line to file in windows if it does not already exist
+      copy:
+        dest: "c:/NEW.txt"
+        content: |
+          line 01
+          line 02
+      when: ansible_system == 'Windows'
+      
+    - name: Add line to file in Linux/Unix if it does not already exist
+      copy:
+        dest: "c:/NEW.txt"
+        content: |
+          line 01
+          line 02
+      when: ansible_system != 'Windows'
