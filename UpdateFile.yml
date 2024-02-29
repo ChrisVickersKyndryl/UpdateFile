@@ -1,6 +1,7 @@
 ---
 - name: Add line to text file if it doesn't exist
   hosts: all
+  gather_facts: true
   
   tasks:
     - name: Check if line exists in file
