@@ -10,7 +10,7 @@
         content: |
           line 01
           line 02
-      when: ansible_system == 'Windows'
+      when: ansible_os_family == 'Windows'
       
     - name: Add line to file in Linux/Unix if it does not already exist
       copy:
@@ -18,4 +18,4 @@
         content: |
           line 01
           line 02
-      when: ansible_system != 'Windows'
+      when: ansible_os_family != 'Windows'
