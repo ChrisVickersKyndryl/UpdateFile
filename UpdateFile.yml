@@ -1,0 +1,16 @@
+---
+- name: Add line to text file if it doesn't exist
+  hosts: all
+  
+  tasks:
+    - name: Check if line exists in file
+      shell: grep -q "{{ line_to_add }}" "{{ file_path }}"
+      register: grep_result
+      changed_when: false
+
+    - name: Add line to file if it doesn't exist
+      lineinfile:
+        path: "{{ file_path }}"
+        line: "{{ line_to_add }}"
+        insertafter: EOF
+      when: grep_result.rc != 0
